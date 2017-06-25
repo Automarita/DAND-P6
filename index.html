@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>D3 Visualization</title>
+  <link rel="stylesheet" href="main.css">
+</head>
+<body>
+  <h1>中国空气质量地图可视化</h1>
+  <div id="content">
+    <div id="time-axis">
+      <span id="current-date">
+        <label for="date-picker"> 选中并用键盘调整各项: </label>
+        <input type="date" id="date-picker" value="2017-06-13"/>
+      </span>
+      <span id="current-hour"><span id="hour-text"></span><input type="range" min="0" max="23" step="1" value="12"/></span>
+      <span id="current-aqtype"><select name="aqtype">
+        <option value="AQI" selected>AQI</option> 
+        <option value="PM2.5">PM2.5</option>
+        <option value="PM10">PM10</option>
+        <option value="SO2">SO2</option>
+        <option value="NO2">NO2</option>
+     </select></span>
+     <span id="header-tips"> 试试鼠标滚轮或拖拽地图 </span>
+    </div>
+    <div id="details" class="info-board hidden">
+        <p><span id="region-name"></span></p>
+        <p><span id="record-time"></span></p>
+        <p><span id="aqvalue"></span></p>
+   </div>
+  </div>
+  <script src="d3.v3.min.js"></script>
+  <script src="d3-legend.js"></script>
+<!--   <script src="//d3js.org/d3.v3.min.js"></script> -->
+  <script src="draw.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
