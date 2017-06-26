@@ -7,11 +7,19 @@ Zoom in/out or drag the map for your free,
 detail information will appears on the upper-right corner
 when your mouse float a certain city.
 
+本作品记录中国大陆地区空气质量数据。
+每幅图反映某日某时全国各地的污染物指标（包括AQI，PM2.5，PM10，二氧化硫，二氧化氮）。
+通过调整上方的日期，时间，指标类型的各项选择器，您能得到不同的图示。
+您还可以放大／缩小或者拖拽地图。
+当鼠标悬置于某地区时，于右上角将显示此地区污染物指标具体值。
+
 ## Design
 d3.js is used for the map's visualization.
 Map's geographical data comes from geojson files shared on the [Internet](http://www.ourd3js.com/map/china_mapdata/mapdata.zip).
-Air quality measurement data comes from [PM25.in](pm25.in), 
+Air quality measurement data comes from [PM25.in](http://pm25.in), 
 and necessary reshape and refine works (**refine.sh, split.py**) have done for loading convenient.
+
+地图数据和空气质量数据皆来源于网络，但在本项目实施前进行了必要的筛选和变形。
 
 json zip files:
 [Google Drive]()
@@ -32,13 +40,6 @@ each json file in `json/` is for each hour's record.
 
 ## Feedback
 
-What do you notice in the visualization?
-What questions do you have about the data?
-What relationships do you notice?
-What do you think is the main takeaway from this visualization?
-Is there something you don’t understand in the graphic?
-
-
 ## Resources
-https://ckhung.github.io/d3-stat-map/main.html
-http://www.ourd3js.com/collection/xunmeng/GDPMap/index.html
+- https://ckhung.github.io/d3-stat-map/main.html
+- http://www.ourd3js.com/collection/xunmeng/GDPMap/index.html
