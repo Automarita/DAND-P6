@@ -115,5 +115,10 @@ input[type="range"]::-webkit-slider-thumb {
   border-right: 0.2em solid #00cfe0;
 }
 
-
+#question {
+    position: absolute;
+    width: 400px;
+    left: 800px;
+    top: 200px;
+    }
 
