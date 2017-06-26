@@ -132,6 +132,7 @@ function drawMap() {
 
     d3.json(G.MAP_FILE, function(error, china) {
         if (error) return console.error(error);
+        query('#progress-bar').classList.add('hidden');
 
         G.svg.selectAll(".path-city")
             .data(china.features)
@@ -143,5 +144,9 @@ function drawMap() {
 
         //当地图数据加载完，上色
         colorMap(G.axis)
+    }).on('progress', function(e) {
+        if(e.responseURL.endsWith('china.json')) {
+            query('#progress-bar').classList.remove('hidden');
+        }
     });
 }

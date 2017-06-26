@@ -115,6 +115,10 @@ input[type="range"]::-webkit-slider-thumb {
   border-right: 0.2em solid #00cfe0;
 }
 
+#progress-bar p{
+    color: rgba(0,0,0,0.4);
+    font-size: 2em;
+}
 #question {
     position: absolute;
     width: 400px;
