@@ -16,16 +16,10 @@ when your mouse float a certain city.
 ## Design
 d3.js is used for the map's visualization.
 Map's geographical data comes from geojson files shared on the [Internet](http://www.ourd3js.com/map/china_mapdata/mapdata.zip).
-Air quality measurement data comes from [PM25.in](http://pm25.in), 
+Air quality measurement data comes from [PM25.in](http://pm25.in),
 and necessary reshape and refine works (**refine.sh, split.py**) have done for loading convenient.
 
 地图数据和空气质量数据皆来源于网络，但在本项目实施前进行了必要的筛选和变形。
-
-json zip files:
-[Google Drive]()
-[Baidu Yunpan](https://pan.baidu.com/s/1c1SdK7A)
-
-
 
 Tools used for wrangling:
 
@@ -41,9 +35,15 @@ each json file in `json/` is for each hour's record.
 ## Feedback
 - 可以考虑只提供一年份的数据
 - 日期的设置也可以考虑设置成滑块
-- 除了展示数据以为最好提供一些统计结论
+- 除了展示数据以外最好提供一些统计结论
+
+## Improvement(Revision)
+- 仅保留了2016年的数据
+- 提供了指标前 n 天的选择器
+- 变更颜色标尺（从 RGB 到 HSL）
 
 
 ## Resources
+参考项目
 - https://ckhung.github.io/d3-stat-map/main.html
 - http://www.ourd3js.com/collection/xunmeng/GDPMap/index.html

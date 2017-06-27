@@ -120,6 +120,7 @@ input[type="range"]::-webkit-slider-thumb {
     height: 80px;
     margin: 10px auto -50px auto;
     color: gray;
+	cursor: pointer;
 }
 
 #stat-n {

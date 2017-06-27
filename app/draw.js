@@ -88,7 +88,10 @@ function colorMap(axis) {
 
             //色标
             G.colorScale["pollute"] = d3.scale.linear()
-                          .range(['lightgreen', 'green', 'yellow', 'red'])
+                          .range([d3.hsl(120, 0.7, 0.6),
+                                  d3.hsl(90, 0.7, 0.6),
+                                  d3.hsl(60, 0.7, 0.6),
+                                  d3.hsl(0, 0.7, 0.6)])
                           .interpolate(d3.interpolateLab)
                           .domain([0, min, min+max/2, max]);
 
