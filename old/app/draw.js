@@ -1,21 +1,5 @@
 "use strict"
 
-//根据 #stat-control 输入 得到需保留配色的城市列表
-function getTop(df, n, asc_desc) {
-    var cities = Object.keys(df);
-    if(n == 0) return cities; //文本框为空时
-
-    if(asc_desc == 'asc') {
-        return cities.sort(function(a,b) {
-            return df[a] - df[b];
-        }).slice(0, n);
-    } else {
-        return cities.sort(function(a,b) {
-            return df[b] - df[a];
-        }).slice(0, n);
-    }
-}
-
 // 更新颜色标尺
 function updateLegend() {
     d3.select('#color-legend').remove();
@@ -75,7 +59,7 @@ function hideDetails() {
 function colorMap(axis) {
     var date = Object.values(axis.calendar).join('');
     var hour = axis.hour;
-    var filepath = "json/" + date + hour + ".json";
+    var filepath = "../json/" + date + hour + ".json";
     d3.json(filepath, function(err, root) {
         if(root) { // 有数据
             G.aqd = root;
@@ -86,52 +70,46 @@ function colorMap(axis) {
             var min = d3.min(Object.values(df));
             var max = d3.max(Object.values(df));
 
-            //色标
-            G.colorScale["pollute"] = d3.scale.linear()
-                          .range(['lightgreen', 'green', 'yellow', 'red'])
-                          .interpolate(d3.interpolateLab)
-                          .domain([0, min, min+max/2, max]);
-
-
-            //检查需要显示的城市
-            var nums = +(query('#stat-n').value);
-            var asc_desc = query('#asc-desc').value;
-            var selected = getTop(df, nums, asc_desc);
+            var colorScale = {};
+            colorScale["AQI"] = d3.scale.linear()
+                                .range(['lightgreen', 'green', 'gold', 'tomato', 'red', 'darkred', 'purple'])
+                                .interpolate(d3.interpolateLab)
+                                .domain(Object.values(G.level["AQI"]));
+            colorScale["pollute"] = d3.scale.linear()
+                                      .range(['lightgreen', 'green', 'yellow', 'red'])
+                                      .interpolate(d3.interpolateLab)
+                                      .domain([0, min, min+max/2, max]);
 
             d3.selectAll('.path-city')
                 .attr('fill', function(d) {    // 计算各地区染色值
-                    var city_name = d.properties.name;
-                    if(selected.indexOf(city_name) > -1) {
-                        if(df[city_name]){
-                            if(axis.aqtype == "AQI") {
-                                return G.colorScale["AQI"](df[city_name]);
-                            } else {
-                                return G.colorScale["pollute"](df[city_name]);
-                            }
-                        } else {                  // 空值染背景色
-                            return G.BACKCOLOR;
+                    var city_name = d.properties.name
+                    if(df[city_name]){
+                        if(axis.aqtype == "AQI") {
+                            return colorScale["AQI"](df[city_name]);
+                        } else {
+                            return colorScale["pollute"](df[city_name]);
                         }
-                    } else {
-                        return G.BACKCOLOR; // 不在筛选之列
+                    } else {                  // 空值染背景色
+                        return G.BACKCOLOR;
                     }
                 }).on('mouseenter', function() {
                     this.classList.add("selected");
                 }).on('mouseleave', function() {
                     this.classList.remove("selected");
                 }).on('mouseover', showDetails)
-                .on('mouseout',  hideDetails);
+                  .on('mouseout',  hideDetails);
 
             // 绘制图例标尺
             updateLegend();
             G.legendPainter = d3.legend.color()
-             .cells(10)
+             .cells(12)
              .title('图例')
              .ascending(true);
 
             if(axis.aqtype == "AQI") {
-                G.legendPainter.scale(G.colorScale["AQI"]);
+                G.legendPainter.scale(colorScale["AQI"]);
             } else {
-                G.legendPainter.scale(G.colorScale["pollute"]);
+                G.legendPainter.scale(colorScale["pollute"]);
             }
             G.legendPainter(d3.select('#color-legend'));
         } else { // json获取失败，全部填背景色
@@ -172,4 +150,3 @@ function drawMap() {
         }
     });
 }
-

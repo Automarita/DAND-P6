@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<title>D3 Visualization</title>
+		<link rel="stylesheet" href="main.css">
+	</head>
+	<body>
+		<h1>中国空气质量地图可视化</h1>
+		<p><em>记录数据从2015年5月10日0时起至2017年6月10日23时</em></p>
+		<div id="content">
+			<div id="time-axis">
+				<span id="current-date">
+					<label for="date-picker"> 选中并用键盘调整各项: </label>
+					<input type="date" id="date-picker" value="2017-06-13"/>
+				</span>
+				<span id="current-hour"><span id="hour-text"></span><input type="range" min="0" max="23" step="1" value="12"/></span>
+				<span id="current-aqtype"><select name="aqtype">
+						<option value="AQI" selected>AQI</option> 
+						<option value="PM2.5">PM2.5</option>
+						<option value="PM10">PM10</option>
+						<option value="SO2">SO2</option>
+						<option value="NO2">NO2</option>
+					</select></span>
+					<span id="header-tips"> 试试鼠标滚轮或拖拽地图 </span>
+			</div>
+			<div id="details" class="info-board hidden">
+				<p><span id="region-name"></span></p>
+				<p><span id="record-time"></span></p>
+				<p><span id="aqvalue"></span></p>
+			</div>
+			<div id="question">
+				<p>初步设计为点击某省再加载所含地市的轮廓，无奈一直处理不好 d3 geo 的投影函数，遂罢。</p>
+				<p>
+				空气质量数据来自 pm25.in， 经 beijingair.sinaapp.com 压缩整理。
+				考虑到加载效率问题，本项目开始前动用各式文本处理工具再行分割和转化。
+				</p>
+
+				<ul>
+					<li>您在这个可视化中注意到什么？
+						<li>您对数据质量有什么问题吗，能有更好的数据整理方式吗？
+							<li>台湾地区的数据提供在 https://erdb.epa.gov.tw/FileDownload/FileDownload.aspx，如果要合并台湾地区的数据，有什么需要考虑的？
+								<li>您是否注意到数据关系？
+									<li>您觉得这个可视化主要表达了什么？
+										<li>这个图形中您有什么不明白的地方吗？是否有更好的交互方式和展现。</ul>
+			</div>
+			<div id="progress-bar" class="hidden"><p><em>少 女 祈 祷 中 . . .</em></p></div>
+		</div>
+		<script src="//d3js.org/d3.v3.min.js"></script>
+		<script src="app/d3-legend.js"></script>
+		<script src="app/draw.js"></script>
+		<script src="app/app.js"></script>
+	</body>
+</html>

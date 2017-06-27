@@ -39,6 +39,10 @@ After **refine.sh**,
 each json file in `json/` is for each hour's record.
 
 ## Feedback
+- 可以考虑只提供一年份的数据
+- 日期的设置也可以考虑设置成滑块
+- 除了展示数据以为最好提供一些统计结论
+
 
 ## Resources
 - https://ckhung.github.io/d3-stat-map/main.html
