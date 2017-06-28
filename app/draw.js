@@ -75,7 +75,7 @@ function hideDetails() {
 function colorMap(axis) {
     var date = Object.values(axis.calendar).join('');
     var hour = axis.hour;
-    var filepath = "https://o7d1qohdm.qnssl.com/" + date + hour + ".json";
+    var filepath = "json/" + date + hour + ".json";
     d3.json(filepath, function(err, root) {
         if(root) { // 有数据
             G.aqd = root;
