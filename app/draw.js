@@ -152,13 +152,13 @@ function drawMap() {
         .center([107, 38])
         .scale(0.8 * G.WIDTH)
         .translate([0.5 * G.WIDTH, 0.5 * G.MAP_H]);
-
+    // 神秘的投影函数，没弄明白
     var path = d3.geo.path().projection(projection);
 
     d3.json(G.MAP_FILE, function(error, china) {
         if (error) return console.error(error);
         query('#progress-bar').classList.add('hidden');
-
+        // 为地图区块涂上背景色
         G.svg.selectAll(".path-city")
             .data(china.features)
             .enter().append("path")
@@ -167,7 +167,7 @@ function drawMap() {
                 return G.BACKCOLOR;
             }).attr("d", path);
 
-        //当地图数据加载完，上色
+        //当地图数据加载完，根据选择器设定为地图区块上色
         colorMap(G.axis)
     }).on('progress', function(e) {
         if(e.responseURL.endsWith('china.json')) {
